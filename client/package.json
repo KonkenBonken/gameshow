@@ -1,0 +1,44 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/node": "^16.18.122",
+    "@types/react": "^18.3.16",
+    "@types/react-dom": "^18.3.5",
+    "css-reset-and-normalize": "^2.3.6",
+    "eslint": "^8.57.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.83.0",
+    "serve": "^14.2.4",
+    "typescript": "^4.9.5",
+    "typescript-plugin-css-modules": "^5.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint ./ --fix",
+    "serve": "serve -s build",
+    "build-and-serve": "npm run build && npm run serve"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
