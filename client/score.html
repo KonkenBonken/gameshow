@@ -53,6 +53,11 @@
         if (score[team] < +div.innerHTML) flash("red");
         div.innerHTML = score[team];
       });
+
+      socket.on("err", (t) => {
+        console.log(team, t);
+        if (team === t) flash("red");
+      });
     </script>
   </body>
 </html>
