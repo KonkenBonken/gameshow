@@ -64,6 +64,23 @@
       function err(team) {
         socket.emit("err", team);
       }
+
+      document.addEventListener("keydown", (e) => {
+        switch (e.key) {
+          case "q":
+            send("a", +1);
+            break;
+          case "a":
+            send("a", -1);
+            break;
+          case "w":
+            send("b", +1);
+            break;
+          case "s":
+            send("b", -1);
+            break;
+        }
+      });
     </script>
     <section>
       Team A
