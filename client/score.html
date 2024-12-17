@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gameshow</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Tomorrow:wght@500&display=swap");
+
+      main {
+        position: fixed;
+        inset: 0;
+        background-color: #000;
+        font-family: "Tomorrow", serif;
+        font-weight: 500;
+        font-style: normal;
+        display: grid;
+        place-content: center;
+        font-size: 80vmin;
+        color: #fff;
+        text-shadow: 0 0 5vmin #0008;
+      }
+    </style>
+  </head>
+  <body>
+    <main>0</main>
+    <script>
+      const socket = io();
+      const team = location.pathname[1];
+      const div = document.querySelector("main");
+
+      socket.on("score", (score) => {
+        div.innerHTML = score[team];
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gameshow</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Tomorrow:wght@500&display=swap");
+
+      body {
+        background-color: #000;
+        font-family: "Tomorrow", serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 15vmin;
+        color: #fff;
+        position: fixed;
+        inset: 0;
+      }
+
+      section {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        inset: 0 50vw 0 0;
+        text-align: center;
+
+        &:last-of-type {
+          inset: 0 0 0 50vw;
+        }
+
+        div {
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          cursor: pointer;
+          border: #fff solid 1vmin;
+          margin-inline: auto;
+
+          &:hover {
+            background-color: #fff2;
+          }
+
+          &:active {
+            background-color: #fff4;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script defer>
+      const socket = io();
+      function send(team, d) {
+        socket.emit("score", [team, d]);
+      }
+    </script>
+    <section>
+      Team A
+      <div onclick="send('a',-1)">-1</div>
+      <div onclick="send('a',+1)">+1</div>
+    </section>
+    <section>
+      Team B
+      <div onclick="send('b',-1)">-1</div>
+      <div onclick="send('b',+1)">+1</div>
+    </section>
+  </body>
+</html>
