@@ -48,6 +48,10 @@
         timeout = setTimeout(() => div.classList.remove(cls), 500);
       }
 
+      document.body.addEventListener("click", () =>
+        document.body.requestFullscreen()
+      );
+
       socket.on("score", (score) => {
         if (score[team] > +div.innerHTML) flash("green");
         if (score[team] < +div.innerHTML) flash("red");
