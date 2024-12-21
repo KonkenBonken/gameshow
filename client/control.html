@@ -52,11 +52,46 @@
           }
         }
       }
+
+      input {
+        position: fixed;
+        z-index: 2;
+        background-color: #000;
+        color: #fff;
+        border: 0;
+        inset: 27vh calc(50vw - 50px) 64vh;
+        text-align: center;
+        font-size: 10vmin;
+
+        &:focus {
+          outline: 0;
+        }
+
+        &#minus {
+          inset: 54vh calc(50vw - 50px) 37vh;
+        }
+      }
     </style>
   </head>
   <body>
     <script defer>
       const socket = io();
+      let deltaPlus = 1;
+      let deltaMinus = -1;
+
+      setTimeout(() => {
+        document
+          .querySelector("#plus")
+          .addEventListener("change", ({ target }) => {
+            deltaPlus = +target.value;
+          });
+        document
+          .querySelector("#minus")
+          .addEventListener("change", ({ target }) => {
+            deltaMinus = +target.value;
+          });
+      }, 400);
+
       function send(team, d) {
         socket.emit("score", [team, d]);
       }
@@ -68,31 +103,33 @@
       document.addEventListener("keydown", (e) => {
         switch (e.key) {
           case "q":
-            send("a", +1);
+            send("a", deltaPlus);
             break;
           case "a":
-            send("a", -1);
+            send("a", deltaMinus);
             break;
           case "w":
-            send("b", +1);
+            send("b", deltaPlus);
             break;
           case "s":
-            send("b", -1);
+            send("b", deltaMinus);
             break;
         }
       });
     </script>
     <section>
       Team A
-      <div onclick="send('a',+1)">+1</div>
-      <div onclick="send('a',-1)">-1</div>
+      <div onclick="send('a',deltaPlus)">+</div>
+      <div onclick="send('a',deltaMinus)">-</div>
       <div onclick="err('a')"></div>
     </section>
     <section>
       Team B
-      <div onclick="send('b',+1)">+1</div>
-      <div onclick="send('b',-1)">-1</div>
+      <div onclick="send('b',deltaPlus)">+</div>
+      <div onclick="send('b',deltaMinus)">-</div>
       <div onclick="err('b')"></div>
     </section>
+    <input id="plus" type="number" value="1" step="1" />
+    <input id="minus" type="number" value="-1" step="1" />
   </body>
 </html>
